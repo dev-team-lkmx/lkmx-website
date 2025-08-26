@@ -12,8 +12,7 @@ Next.js-based website with internationalization support and custom styling using
 
 ## 🔧 Prerequisites
 
-- Node.js 18
-- npm 
+- Node.js 22
 
 ## 🚀 Installation
 
