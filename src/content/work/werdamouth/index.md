@@ -2,13 +2,13 @@
 number: 67
 title: ['Werdamouth']
 headline: ['']
-solutions: ['APP Móvil', 'Red Social']
+solutions: ['Mobile App', 'Social Network']
 services: []
 methodologies: []
 period: []
 thumbnail: 'werdamouth-thumbnail'
 cover: 'werdamouth-cover'
-storyType: 'Work'
+storyType: 'Trabajo'
 introduction: {
     title: "",
     content: ""
