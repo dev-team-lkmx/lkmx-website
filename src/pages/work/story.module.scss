@@ -201,24 +201,73 @@ height: 0px;
   &__mainContent {
 
     padding-bottom: 32px;
-    
-    // Aplica a todos los headings
- h2, h3, h4, h5, h6 {
-  // Aplica al primer heading
-  // &:first-of-type {
-  //   margin-top: 0; // Elimina el margen superior solo para el primer heading
-  // }
-  margin-top: 20px; // Margen superior común para todos los headings
-  margin-bottom: 20px; // Margen inferior común para todos los headings
-
-  
-}
+    /* Aplica a todos los headings */
+    h2, h3, h4, h5, h6 {
+      /* Aplica al primer heading
+         &:first-of-type {
+           margin-top: 0;  Elimina el margen superior solo para el primer heading
+         }
+      */
+      margin-top: 20px; /* Margen superior común para todos los headings */
+      margin-bottom: 20px; /* Margen inferior común para todos los headings */
+    }
     display: grid;
-    // gap: 56px;
-    // padding: 0 0 56px 0;
+    /* gap: 56px; */
+    /* padding: 0 0 56px 0; */
     max-width: 742px;
     @include respond-to('<=s') {
       max-width: 95vw;
+    }
+    
+    /* Fallback global selectors for legacy content that hardcodes CSS Module hashes */
+    & :global([class^="story_story__mainContent__technologies"]) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px 24px;
+      text-align: center;
+      border: none;
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      width: 100%;
+      h3 {
+        margin: 0;
+      }
+      span {
+        font-family: var(--lk-font-ibm);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: $color-lang-secondary;
+      }
+    }
+
+    & :global([class^="story_story__mainContent__technologies__images"]) {
+      display: flex;
+      align-items: center;
+      width: auto;
+      div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px 20px;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 36px;
+          min-height: unset;
+          transition: transform .2s ease, opacity .2s ease;
+          opacity: .95;
+          &:hover { transform: scale(1.06); opacity: 1; }
+        }
+      }
+    }
+
+    & :global([class*="story_story__mainContent__technologies__images__large"]) {
+      width: 56px !important;
     }
     h2 {
       @include respond-to('<=s') {
