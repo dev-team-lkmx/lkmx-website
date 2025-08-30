@@ -69,7 +69,7 @@ height: 0px;
   &__heroImg {
     width: 100%;
     height: 378px;
-    min-width: 736px;
+    min-width: 0;
     position: relative;
     @include respond-to('xxxl') {
       height: 536px;
