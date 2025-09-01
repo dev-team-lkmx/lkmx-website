@@ -38,6 +38,24 @@ export default function Solution({solutionData}) {
     const [height, setHeight] = useState();
     const targetRef = useRef(null);
 
+    // Localized tagline for the item type shown above the title
+    const localizedTagline = (() => {
+        const tag = (solutionData.storyType || 'solution').toString().toLowerCase();
+        switch (tag) {
+            case 'solution':
+                return locale === 'es' ? 'SOLUCIÓN' : 'SOLUTION';
+            case 'industry':
+                return locale === 'es' ? 'INDUSTRIA' : 'INDUSTRY';
+            case 'service':
+                return locale === 'es' ? 'SERVICIO' : 'SERVICE';
+            case 'work':
+            case 'trabajo':
+                return locale === 'es' ? 'TRABAJO' : 'WORK';
+            default:
+                return tag.toUpperCase();
+        }
+    })();
+
     useIsomorphicLayoutEffect(() => {
         const handleScroll = () => {
             if (window.innerWidth >= 992 && targetRef.current) {
@@ -70,7 +88,7 @@ export default function Solution({solutionData}) {
                 <GoBackBar destiny="/solutions" />
                 <Column>
                     <Block className={styles.solution__heroHeading}>
-                        <span>{solutionData.storyType || "solution"}</span>
+                        <span>{localizedTagline}</span>
                         <h1>{solutionData.title[0]}</h1>
                     </Block>
                 </Column>

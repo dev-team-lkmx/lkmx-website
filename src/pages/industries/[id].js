@@ -69,6 +69,24 @@ export default function Industry({industryData}) {
     const [height, setHeight] = useState();
     const targetRef = useRef(null);
 
+    // Localized tagline for the item type shown above the title
+    const localizedTagline = (() => {
+        const tag = (industryData.storyType || 'industry').toString().toLowerCase();
+        switch (tag) {
+            case 'industry':
+                return locale === 'es' ? 'INDUSTRIA' : 'INDUSTRY';
+            case 'solution':
+                return locale === 'es' ? 'SOLUCIÓN' : 'SOLUTION';
+            case 'service':
+                return locale === 'es' ? 'SERVICIO' : 'SERVICE';
+            case 'work':
+            case 'trabajo':
+                return locale === 'es' ? 'TRABAJO' : 'WORK';
+            default:
+                return tag.toUpperCase();
+        }
+    })();
+
     useIsomorphicLayoutEffect(() => {
         const handleScroll = () => {
             if (window.innerWidth >= 992 && targetRef.current) {
@@ -101,7 +119,7 @@ export default function Industry({industryData}) {
                 <GoBackBar destiny="/industries" />
                 <Column>
                     <Block className={styles.industry__heroHeading}>
-                        <span>{industryData.storyType || "industry"}</span>
+                        <span>{localizedTagline}</span>
                         <h1>{industryData.title[0]}</h1>
                         {industryData.title[1] && <h1>{industryData.title[1]}</h1>}
                         {industryData.tags && (

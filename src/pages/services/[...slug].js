@@ -149,6 +149,25 @@ export default function Service({
   const [height, setHeight] = useState();
   const targetRef = useRef(null);
 
+  // Localized taglines for parent and current service
+  const getLocalizedTagline = (tag) => {
+    const normalized = (tag || 'service').toString().toLowerCase();
+    switch (normalized) {
+      case 'service':
+      case 'services':
+        return locale === 'es' ? 'SERVICIO' : 'SERVICE';
+      case 'solution':
+        return locale === 'es' ? 'SOLUCIÓN' : 'SOLUTION';
+      case 'industry':
+        return locale === 'es' ? 'INDUSTRIA' : 'INDUSTRY';
+      case 'work':
+      case 'trabajo':
+        return locale === 'es' ? 'TRABAJO' : 'WORK';
+      default:
+        return normalized.toUpperCase();
+    }
+  };
+
   useIsomorphicLayoutEffect(() => {
     const handleScroll = () => {
       if (window.innerWidth >= 992 && targetRef.current) {
@@ -193,7 +212,7 @@ export default function Service({
 
           <Column>
             <Block className={styles.service__heroHeading}>
-              <span>{parentServiceData.title}</span>
+              <span>{getLocalizedTagline(parentServiceData.storyType || 'service')}</span>
               <h1>{serviceData.title}</h1>
               {serviceData.description && (
                 <p className={styles.service__description}>
@@ -278,7 +297,7 @@ export default function Service({
         <GoBackBar destiny="/services" />
         <Column>
           <Block className={styles.service__heroHeading}>
-            <span>{serviceData.storyType || "service"}</span>
+            <span>{getLocalizedTagline(serviceData.storyType)}</span>
             <h1>{serviceData.title}</h1>
           </Block>
         </Column>
