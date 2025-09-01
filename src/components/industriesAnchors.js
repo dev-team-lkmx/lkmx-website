@@ -1,36 +1,62 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "@/components/industriesAnchors.module.scss";
 import { Block, Column } from "@lkmx/flare-react";
 import Image from "next/image";
 
 
 export default function IndustriesAnchors({anchorsData}) {
+    const tickingRef = useRef(false);
     useEffect(() => {
-        document.addEventListener('scroll', function () {
-            var i = 0;
-            var span = "";            
-            anchorsData.forEach(element => {
-                if(document.getElementById(element.title)) {
-                    const item = document.getElementById(element.title);
-                    const rect = item.getBoundingClientRect();
-                    const isInViewport = rect.top <= 56 && rect.top > -350;
-    
-                    if (isInViewport){
-                        span = document.getElementById("span" + i);
-                        span.style.color = "#0B0E29";                                    
-                    }                    
-                    else
-                    {
-                        span = document.getElementById("span" + i);
-                        span.style.color = "#93949E";                        
-                    }                        
-                    i++; 
-                }                
+        const headerOffset = 56; // sticky header height
+        const activeColor = "#0B0E29";
+        const inactiveColor = "#93949E";
+
+        const setActiveIndex = (activeIndex) => {
+            anchorsData.forEach((_, idx) => {
+                const span = document.getElementById(`span${idx}`);
+                if (!span) return;
+                span.style.color = idx === activeIndex ? activeColor : inactiveColor;
             });
-        }, {
-            passive: true
-        });
-    })
+        };
+
+        const computeActive = () => {
+            let bestIndex = -1;
+            let bestDistance = Infinity;
+            anchorsData.forEach((element, idx) => {
+                const el = document.getElementById(element.title);
+                if (!el) return;
+                const rect = el.getBoundingClientRect();
+                // distance from target top to header baseline
+                const distance = Math.abs(rect.top - headerOffset);
+                // Prefer sections that have passed the header (rect.top <= headerOffset)
+                const isPastHeader = rect.top <= headerOffset;
+                const score = isPastHeader ? distance : distance + 1000; // penalize ones below header
+                if (score < bestDistance) {
+                    bestDistance = score;
+                    bestIndex = idx;
+                }
+            });
+            if (bestIndex >= 0) setActiveIndex(bestIndex);
+        };
+
+        const onScroll = () => {
+            if (tickingRef.current) return;
+            tickingRef.current = true;
+            requestAnimationFrame(() => {
+                computeActive();
+                tickingRef.current = false;
+            });
+        };
+
+        // Initialize and bind
+        computeActive();
+        document.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        return () => {
+            document.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        };
+    }, [anchorsData]);
     
     return(
         <Column mode="normal" modeL="slim" modeXxxl="normal"  className={styles.anchors__sections}>
