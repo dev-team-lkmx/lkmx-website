@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "@/components/ourWork.module.scss";
 import { Block, Column } from "@lkmx/flare-react";
 import Image from "next/image";
@@ -12,15 +12,31 @@ export default function OurWork({ projects = [] }) {
     const [first, setFirst] = useState({});
     const [second, setSecond] = useState({});
     const [third, setThird] = useState({});
+    const indexesRef = useRef(null);
 
     useEffect(() => {
-        setRandomProjects();
-    }, [locale, projects]);
+        setProjectsDeterministically();
+        // Run whenever the project list changes (e.g., due to locale),
+        // but keep the same indexes across locales using indexesRef
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [projects]);
 
-    function setRandomProjects() {
+    function setProjectsDeterministically() {
         if (projects.length === 0) return;
-        
-        const numbers = generateRandom(projects.length);
+
+        // Preserve previously chosen indexes when switching locales
+        if (!indexesRef.current) {
+            indexesRef.current = generateRandom(projects.length);
+        } else {
+            const { one, two, three } = indexesRef.current;
+            const outOfBounds =
+                one >= projects.length || two >= projects.length || three >= projects.length;
+            if (outOfBounds) {
+                indexesRef.current = generateRandom(projects.length);
+            }
+        }
+
+        const numbers = indexesRef.current;
         setFirst(projects[numbers.one]);
         setSecond(projects[numbers.two]);
         setThird(projects[numbers.three]);
@@ -51,7 +67,6 @@ export default function OurWork({ projects = [] }) {
         </div>
     );
 
-    console.log(second)
     return (first.title && second.title && third.title ?
         <Column className={styles.ourWork}>
             <Block className={styles.ourWork__block}>

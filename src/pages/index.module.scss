@@ -15,7 +15,7 @@
       }
       &__content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         @include respond-to("<=m") {
           grid-template-columns: 1fr;
           grid-template-rows: 1fr 1fr;
