@@ -5,6 +5,7 @@ import { IBM_Plex_Sans } from '@next/font/google'
 import { Inter } from '@next/font/google'
 import { Syne } from '@next/font/google';
 import Head from 'next/head';
+import { useEffect } from 'react';
 
 const syne = Syne({
     subsets: ['latin'],
@@ -28,6 +29,26 @@ const inter = Inter({
 })
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const handlePopState = () => {
+      window.location.reload();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
+  }, []);
   return (
     <>
       <Head>

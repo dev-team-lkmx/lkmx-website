@@ -36,6 +36,28 @@ export default function SuccessStory({storyData}) {
     const [height, setHeight] = useState();
     const targetRef = useRef(null);
 
+    // Localize the story type label (e.g., Work → TRABAJO in ES)
+    const localizedStoryType = (() => {
+        const tag = (storyData.storyType || '').toString().toLowerCase();
+        switch (tag) {
+            case 'work':
+            case 'trabajo':
+                return locale === 'es' ? 'TRABAJO' : 'WORK';
+            case 'service':
+            case 'servicio':
+                return locale === 'es' ? 'SERVICIO' : 'SERVICE';
+            case 'solution':
+            case 'solucion':
+            case 'solución':
+                return locale === 'es' ? 'SOLUCIÓN' : 'SOLUTION';
+            case 'industry':
+            case 'industria':
+                return locale === 'es' ? 'INDUSTRIA' : 'INDUSTRY';
+            default:
+                return storyData.storyType;
+        }
+    })();
+
     useIsomorphicLayoutEffect(() => {
         const handleScroll = () => {
             if (window.innerWidth >= 992 && targetRef.current) {
@@ -68,7 +90,7 @@ export default function SuccessStory({storyData}) {
                 <GoBackBar destiny="/work" />
                 <Column>
                     <Block className={styles.story__heroHeading}>
-                        <span>{storyData.storyType}</span>
+                        <span>{localizedStoryType}</span>
                         <h1>{storyData.title[0]}</h1>
                         <h1>{storyData.title[1]}</h1>
                         <span>{Array.isArray(storyData.solutions) ? storyData.solutions.join(', ') : storyData.solutions}</span>
