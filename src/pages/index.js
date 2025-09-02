@@ -67,7 +67,7 @@ export default function Index({ projects }) {
   return (
     <BaseLayout>
       <HeadSeo
-        title={$t.home.title + " - " + siteMetadata.companyName}
+        title={siteMetadata.companyName}
         description={locale === 'es' ? 'Somos socios estratégicos de compañías alrededor del mundo, construyendo soluciones de software innovadoras con nuestra metodología única y la tecnología más sólida.' : 'We are strategic partners with businesses in different industries around the world, building innovative software solutions with our unique methodology and the most solid technology.'}
         ogImageUrl={
           $t.home.ogImage
