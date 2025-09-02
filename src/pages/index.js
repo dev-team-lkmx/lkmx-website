@@ -12,7 +12,7 @@ import ImageLegacy from "next/legacy/image";
 import Image from "next/image";
 import OurWork from "../components/ourWork";
 import Industries from "../components/industriesComponent";
-import { getSortedStoriesData } from '../lib/work';
+import { getSortedStoriesData } from "../lib/work";
 
 function getTeamList() {
   let r = require.context("/public/images", false, /\.(png|jpe?g|svg)$/);
@@ -29,20 +29,20 @@ function getTeamList() {
 
 export async function getStaticProps({ locale }) {
   const storiesData = getSortedStoriesData(locale);
-    
+
   // Transform the data to match the expected format
-  const projects = storiesData.map(story => ({
-      title: story.title || [""],
-      services: story.solutions?.length ? story.solutions : [],
-      route: `/work/${story.id}`,
-      thumbnail: story.thumbnail || "",
-      catchphrase: ""
+  const projects = storiesData.map((story) => ({
+    title: story.title || [""],
+    services: story.solutions?.length ? story.solutions : [],
+    route: `/work/${story.id}`,
+    thumbnail: story.thumbnail || "",
+    catchphrase: "",
   }));
 
   return {
     props: {
-      projects
-    }
+      projects,
+    },
   };
 }
 
@@ -229,7 +229,12 @@ export default function Index({ projects }) {
 
         <OurWork projects={projects} />
 
-        <Column className={styles.index__gcloudpartner} numberS="1" number="2" mode="normal">
+        <Column
+          className={styles.index__gcloudpartner}
+          numberS="1"
+          number="2"
+          mode="normal"
+        >
           <Block className={styles.message}>
             <div>
               <h2>{$t.home.gcloudTitle}</h2>
@@ -242,6 +247,7 @@ export default function Index({ projects }) {
                 width="300"
                 height="300"
                 src="/certifications/gcloud.svg"
+                alt="Google Cloud Partner"
               ></Image>
             </div>
           </Block>
