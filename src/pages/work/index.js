@@ -34,44 +34,7 @@ export default function StoriesPage({ projects = [] }) {
     const $t = getLang(locale);
     const router = useRouter();
 
-    // Save scroll on navigate away; restore when mounting (helps Back button)
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const key = `work-scroll:${locale || 'default'}`;
 
-        const restore = () => {
-            try {
-                const raw = sessionStorage.getItem(key);
-                if (!raw) return;
-                const { x, y } = JSON.parse(raw);
-                requestAnimationFrame(() => window.scrollTo(x || 0, y || 0));
-            } catch (_) {}
-        };
-
-        const save = () => {
-            try {
-                sessionStorage.setItem(key, JSON.stringify({ x: window.scrollX, y: window.scrollY }));
-            } catch (_) {}
-        };
-
-        // Restore when landing on this page (e.g., via Back)
-        const t = setTimeout(restore, 0);
-
-        // Save when navigating away from this page
-        const onStart = (url) => {
-            if (!url.startsWith('/work/')) return;
-            // Leaving list toward a detail: save position
-            save();
-        };
-        router.events.on('routeChangeStart', onStart);
-        window.addEventListener('beforeunload', save);
-
-        return () => {
-            clearTimeout(t);
-            router.events.off('routeChangeStart', onStart);
-            window.removeEventListener('beforeunload', save);
-        };
-    }, [router.events, locale]);
 
     return (
         <BaseLayout>
