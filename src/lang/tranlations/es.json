@@ -102,7 +102,7 @@
     "ogImage": "",
     "headline": ["NUESTRO", "EQUIPO"],
     "hero": [
-      "Somos una combinación de",
+      "Somos una combinación de ",
       "creativos",
       "y",
       "expertos",
@@ -375,9 +375,7 @@
       },
       "solutions": {
         "title": "Soluciones",
-        "items": [
-          "Soluciones"
-        ]
+        "items": ["Soluciones"]
       },
       "methodology": {
         "title": "INDUSTRIAS",
