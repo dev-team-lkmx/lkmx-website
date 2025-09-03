@@ -3,85 +3,136 @@ import BaseLayout from "@/layouts/base-layout.js";
 import { Block, Column, Page } from "@lkmx/flare-react";
 import styles from "@/pages/team.module.scss";
 
-import getLang from '@/lang';
-import siteMetadata from "../meta/siteMetadata"
-import HeadSeo from "../components/HeadSeo"
+import getLang from "@/lang";
+import siteMetadata from "../meta/siteMetadata";
+import HeadSeo from "../components/HeadSeo";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
 function getTeamList() {
-  let r = require.context('/public/images', false, /\.(png|jpe?g|svg)$/);
-  return r.keys().map(n => {
-    return {
-      fileName: n.replace(/\.\//, ''),
-      name: n.replace(/\.\/_\d*_/, '').replace(/\.jpg/, '')
-    };
-  }).sort((a, b) => a.name.localeCompare(b.name));
+  let r = require.context("/public/images", false, /\.(png|jpe?g|svg)$/);
+  return r
+    .keys()
+    .map((n) => {
+      return {
+        fileName: n.replace(/\.\//, ""),
+        name: n.replace(/\.\/_\d*_/, "").replace(/\.jpg/, ""),
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export default function ContactPage() {
   const { locale } = useRouter();
   const $t = getLang(locale);
   const fallbackBlurImage =
-    'data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAKAAoDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9OP2vv+Cy3wV+H/7fvw08BWWg65qnhf4J6++geNdd0/XJrK3m1PWnSzleHTov9Gvray80+YbgneVYIV4NAH9DWmeOfht4h03T9fsNb05rHXLK01iyY3CAtaanBHe2zEc4JhnQnk896d33f3gfxD/E7wv4avdZ/ax1a88O6Fd6pF8Q5hFqVzpNhPqEe3VIyuy8lt3uEwSSNsgwSSOaQH9I3wshhHwx+HIEUQA8B+EAAI0AAHh/T8ADHAFAAP/Z';
+    "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAKAAoDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9OP2vv+Cy3wV+H/7fvw08BWWg65qnhf4J6++geNdd0/XJrK3m1PWnSzleHTov9Gvray80+YbgneVYIV4NAH9DWmeOfht4h03T9fsNb05rHXLK01iyY3CAtaanBHe2zEc4JhnQnk896d33f3gfxD/E7wv4avdZ/ax1a88O6Fd6pF8Q5hFqVzpNhPqEe3VIyuy8lt3uEwSSNsgwSSOaQH9I3wshhHwx+HIEUQA8B+EAAI0AAHh/T8ADHAFAAP/Z";
   const pictures = getTeamList();
   pictures.forEach((e, index) => {
-    if((index + 1) % 7 == 0) {
-      pictures.splice(index, 0, {fileNames: null, name: null});
+    if ((index + 1) % 7 == 0) {
+      pictures.splice(index, 0, { fileNames: null, name: null });
     }
   });
 
   return (
     <BaseLayout>
       <HeadSeo
-        title={$t.team.title + ' - ' + siteMetadata.companyName}
+        title={$t.team.title + " - " + siteMetadata.companyName}
         description={$t.team.ogDescription}
-        ogImageUrl={$t.home.ogImage ? $t.home.ogImage : locale === 'es' ? siteMetadata.ogDefaultImageEs : siteMetadata.ogDefaultImageEn}
-        ogTwitterImage={$t.home.ogImage ? $t.home.ogImage : locale === 'es' ? siteMetadata.ogDefaultImageEs : siteMetadata.ogDefaultImageEn}
+        ogImageUrl={
+          $t.home.ogImage
+            ? $t.home.ogImage
+            : locale === "es"
+            ? siteMetadata.ogDefaultImageEs
+            : siteMetadata.ogDefaultImageEn
+        }
+        ogTwitterImage={
+          $t.home.ogImage
+            ? $t.home.ogImage
+            : locale === "es"
+            ? siteMetadata.ogDefaultImageEs
+            : siteMetadata.ogDefaultImageEn
+        }
       />
 
       <Page className={styles.contact}>
-
-        <Column number={2} numberS={1} weight="right" weightS="Normal" modeXl="normal" modeL="full" modeM="full" className={styles.contact__hero}>
+        <Column
+          number={2}
+          numberS={1}
+          weight="right"
+          weightS="Normal"
+          modeXl="normal"
+          modeL="full"
+          modeM="full"
+          className={styles.contact__hero}
+        >
           <Block className={styles.contact__hero__block}>
             <div className={styles.contact__hero__left}>
-              <h1>{$t.team.headline[0]} <br/>{$t.team.headline[1]}</h1>
-              <p>{$t.team.hero[0]}<br/> <strong>{$t.team.hero[1]}</strong> {$t.team.hero[2]} <strong className={styles.contact__hero__left__pink}>{$t.team.hero[3]}</strong> {$t.team.hero[4]} <br/>{$t.team.hero[5]} <br/>{$t.team.hero[6]} <br/>{$t.team.hero[7]} <br/>{$t.team.hero[8]}</p>
+              <h1>
+                {$t.team.headline[0]} <br />
+                {$t.team.headline[1]}
+              </h1>
+              <p>
+                {$t.team.hero[0]}
+                <strong>{$t.team.hero[1]}</strong> {$t.team.hero[2]}{" "}
+                <strong className={styles.contact__hero__left__pink}>
+                  {$t.team.hero[3]}
+                </strong>{" "}
+                {$t.team.hero[4]} {$t.team.hero[5]} {$t.team.hero[6]}{" "}
+                {$t.team.hero[7]} {$t.team.hero[8]}
+              </p>
             </div>
           </Block>
-          <Block className={styles['contact__hero__block-right']}>
+          <Block className={styles["contact__hero__block-right"]}>
             <div className={styles.contact__hero__right}>
-              <div><div></div></div>
+              <div>
+                <div></div>
+              </div>
               <div className={styles.contact__hero__right__koi}>
                 <Image
-                fill
-                priority
-                src="/koi-swimming.svg" 
-                alt="koi-swimming" 
-                className={styles.contact__hero__right__koi__img}
+                  fill
+                  priority
+                  src="/koi-swimming.svg"
+                  alt="koi-swimming"
+                  className={styles.contact__hero__right__koi__img}
                 />
               </div>
               <div className={styles.contact__hero__right__container}>
-              <Image fill src="/triangles/triangle-code--pink--right.svg" alt="triangle" className={styles.contact__hero__right__triangle}/>
-              <Image fill src="/triangles/triangle-code--pink--right--small.svg" alt="triangle" className={styles['contact__hero__right__triangle-mobile']}/>
-              </div>
-              
-              <div className={styles.contact__hero__right__clouds}>
                 <Image
                   fill
-                  priority={true}                  
-                  src="/clouds.svg" alt="clouds"
+                  src="/triangles/triangle-code--pink--right.svg"
+                  alt="triangle"
+                  className={styles.contact__hero__right__triangle}
+                />
+                <Image
+                  fill
+                  src="/triangles/triangle-code--pink--right--small.svg"
+                  alt="triangle"
+                  className={styles["contact__hero__right__triangle-mobile"]}
                 />
               </div>
-              <div alt="clouds--small" className={styles['contact__hero__right__clouds-mobile']}></div>
+
+              <div className={styles.contact__hero__right__clouds}>
+                <Image fill priority={true} src="/clouds.svg" alt="clouds" />
+              </div>
+              <div
+                alt="clouds--small"
+                className={styles["contact__hero__right__clouds-mobile"]}
+              ></div>
             </div>
           </Block>
         </Column>
-        
+
         <Column>
           <Block className={styles.contact__banner}>
             <div className={styles.contact__banner__content}>
-              <h3>{$t.team.banner.title[0]} <strong>{$t.team.banner.title[1]}</strong>, <strong>{$t.team.banner.title[2]}</strong>, <strong>{$t.team.banner.title[3]}</strong> {$t.team.banner.title[4]}</h3>
+              <h3>
+                {$t.team.banner.title[0]}{" "}
+                <strong>{$t.team.banner.title[1]}</strong>,{" "}
+                <strong>{$t.team.banner.title[2]}</strong>,{" "}
+                <strong>{$t.team.banner.title[3]}</strong>{" "}
+                {$t.team.banner.title[4]}
+              </h3>
               <p>{$t.team.banner.text}</p>
             </div>
           </Block>
@@ -115,16 +166,28 @@ export default function ContactPage() {
                 </div>
               </div>
               {pictures.map((picture, index) => {
-                return <div key={index} className={`${picture.fileName ? styles.contact__team__content__image : styles['contact__team__content__card-empty']}`}>
-                  {picture.fileName ? 
-                  <Image 
-                  fill 
-                  placeholder="blur"
-                  blurDataURL={fallbackBlurImage}
-                  src={`/images/${picture.fileName}`} 
-                  alt={picture.name}
-                  /> : <></>}
-                </div>
+                return (
+                  <div
+                    key={index}
+                    className={`${
+                      picture.fileName
+                        ? styles.contact__team__content__image
+                        : styles["contact__team__content__card-empty"]
+                    }`}
+                  >
+                    {picture.fileName ? (
+                      <Image
+                        fill
+                        placeholder="blur"
+                        blurDataURL={fallbackBlurImage}
+                        src={`/images/${picture.fileName}`}
+                        alt={picture.name}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                );
               })}
             </div>
           </Block>
@@ -167,7 +230,6 @@ export default function ContactPage() {
             <br/><br/><br/><br/>
           </Block>
         </Column> */}
-
       </Page>
     </BaseLayout>
   );
