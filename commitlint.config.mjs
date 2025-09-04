@@ -1,30 +1,27 @@
-const config = {
+export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    // Disable rules from @commitlint/config-conventional that conflict with the new format
-    'type-enum': [0],
-    'type-case': [0],
-    'subject-case': [0],
-    'type-empty': [0],
-    'subject-empty': [0],
-    'header-max-length': [2, 'always', 100],
-
-    // Add a new rule for the custom format
-    'blueprint-jira-format': [2, 'always'],
+    'type-enum': [
+      2,
+      'always',
+      [
+        'feat', // New feature
+        'fix', // Bug fix
+        'docs', // Documentation only changes
+        'style', // Changes that do not affect the meaning of the code (white-space, formatting, etc)
+        'refactor', // Code changes that neither fixes a bug nor adds a feature
+        'perf', // Performance improvements
+        'test', // Adding missing tests or correcting existing tests
+        'build', // Changes that affect the build system or external dependencies
+        'ci', // Changes to CI configuration files and scripts
+        'chore', // Other changes that don't modify src or test files
+        'revert', // Reverts a previous commit
+      ],
+    ],
+    'subject-case': [
+      2,
+      'never',
+      ['sentence-case', 'start-case', 'pascal-case', 'upper-case'],
+    ],
   },
-  plugins: [
-    {
-      rules: {
-        'blueprint-jira-format': ({ header }) => {
-          const regex = /^Blueprint-\d+ .{1,80}$/;
-          return [
-            regex.test(header),
-            'The commit message must start with "Blueprint-XXXX" followed by a message (e.g., "Blueprint-1234 Fix a bug").',
-          ];
-        },
-      },
-    },
-  ],
 };
-
-export default config;
