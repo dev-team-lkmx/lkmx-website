@@ -1,60 +1,132 @@
-# LKMX Website 🌐
+# LKMX Website
 
-Next.js-based website with internationalization support and custom styling using Flare design system.
+Sitio web construido con Astro y Tailwind CSS.
 
-## ✨ Features
-
-- 🚀 Built with Next.js 13
-- 🌍 Multilingual support (English/Spanish)
-- 🎨 SVG imports with SVGR
-- 💅 Flare design system integration
-- 📝 Markdown content support with gray-matter and remark
-
-## 🔧 Prerequisites
-
-- Node.js 22
-
-## 🚀 Installation
+## 🚀 Desarrollo
 
 ```bash
+# Instalar dependencias
 npm install
-```
 
-## 💻 Development
-
-```bash
+# Ejecutar en modo desarrollo
 npm run dev
-```
 
-The site will be available at `http://localhost:3000`
-
-### 🔍 Pre-commit Checks
-
-Before pushing changes to the repository:
-1. Run local build test:
-```bash
-npm run lint
+# Construir para producción
 npm run build
+
+# Vista previa de la construcción
+npm run preview
 ```
-2. Fix any build errors or warnings
-3. Only commit and push once the build succeeds
 
-## 📜 Scripts
+## 🛠️ Herramientas de Calidad de Código
 
-- `dev`: Start development server
-- `build`: Build production application
-- `export`: Generate static export
-- `start`: Start production server
-- `lint`: Run ESLint checks
+### ESLint
 
-## 🚀 Deployment
+Linting de código JavaScript/TypeScript y Astro.
 
-### Vercel Setup
-- Project hosted on a free Vercel account
-- Account ownership: walter.hurtado@lkmx.io
-- Limited to single member access
+```bash
+# Verificar problemas de linting
+npm run lint
 
-### 🔄 Deployment Flow
-1. Push changes to `stg` branch (no automatic deployment)
-2. Create Pull Request from `stg` to `PRD` when ready
-3. Vercel automatically deploys on commits to `PRD` branch
+# Corregir problemas automáticamente
+npm run lint:fix
+```
+
+### Prettier
+
+Formateo automático de código.
+
+```bash
+# Formatear todo el código
+npm run format
+
+# Verificar formato sin cambiar archivos
+npm run format:check
+```
+
+### Husky + lint-staged
+
+Hooks de Git que ejecutan linting y formateo automáticamente antes de cada commit.
+
+### Commitlint + Commitizen
+
+Sistema de validación de commits que asegura que todos los commits sigan el formato convencional:
+
+- **feat**: Nueva funcionalidad
+- **fix**: Corrección de bugs
+- **docs**: Cambios en documentación
+- **style**: Cambios de formato (no afectan funcionalidad)
+- **refactor**: Refactorización de código
+- **perf**: Mejoras de rendimiento
+- **test**: Agregar o corregir tests
+- **build**: Cambios en sistema de build
+- **ci**: Cambios en configuración de CI
+- **chore**: Otros cambios (no modifican src o tests)
+- **revert**: Revertir commit anterior
+
+## 📁 Estructura del Proyecto
+
+```
+lkmx-website/
+├── src/
+│   ├── pages/          # Páginas de Astro
+│   └── styles/         # Estilos CSS
+├── public/             # Archivos estáticos
+├── .vscode/            # Configuración de VS Code
+├── .husky/             # Hooks de Git
+├── .eslintrc.cjs       # Configuración de ESLint
+├── .prettierrc         # Configuración de Prettier
+└── lkmx-website.code-workspace  # Workspace de VS Code
+```
+
+## 🔧 Configuración de VS Code
+
+El proyecto incluye configuraciones optimizadas para VS Code:
+
+- **Formateo automático** al guardar con Prettier
+- **Linting automático** con ESLint
+- **Soporte completo** para Astro
+- **Integración** con Tailwind CSS
+- **Extensiones recomendadas** preconfiguradas
+
+### Abrir como Workspace
+
+Para obtener la mejor experiencia de desarrollo, abre el archivo `lkmx-website.code-workspace` en VS Code.
+
+## 📝 Scripts Disponibles
+
+- `npm run dev` - Servidor de desarrollo
+- `npm run build` - Construcción para producción
+- `npm run preview` - Vista previa de la construcción
+- `npm run lint` - Verificar problemas de linting
+- `npm run lint:fix` - Corregir problemas de linting
+- `npm run format` - Formatear código
+- `npm run format:check` - Verificar formato
+- `npm run commit` - Crear commit interactivo (commitizen)
+- `npm run prepare` - Configurar Husky
+
+## 🎨 Páginas Disponibles
+
+- `/` - Página principal con demostración básica de Tailwind
+- `/components` - Página de componentes con utilidades personalizadas
+
+## 🎯 Flujo de Trabajo Recomendado
+
+1. **Desarrollo**: Usa `npm run dev` para desarrollo local
+2. **Linting**: Ejecuta `npm run lint` antes de hacer commit
+3. **Formateo**: Usa `npm run format` para mantener consistencia
+4. **Commit**: Usa `npm run commit` para crear commits interactivos que cumplan las reglas
+5. **Validación**: Husky ejecutará automáticamente linting, formateo y validación de commits
+6. **Construcción**: Usa `npm run build` para verificar que todo funcione
+
+## 📚 Tecnologías
+
+- **Astro** - Framework de sitios web estáticos
+- **Tailwind CSS** - Framework de CSS utilitario
+- **TypeScript** - Tipado estático para JavaScript
+- **ESLint** - Linting de código
+- **Prettier** - Formateo de código
+- **Husky** - Hooks de Git
+- **lint-staged** - Linting de archivos staged
+- **Commitlint** - Validación de formato de commits
+- **Commitizen** - Creación interactiva de commits

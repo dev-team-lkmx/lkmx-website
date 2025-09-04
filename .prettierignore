@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+*.min.js
+*.min.css
+public/
+package-lock.json
+package.json
+tailwind.config.mjs
+astro.config.mjs

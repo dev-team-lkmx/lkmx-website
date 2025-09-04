@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "jsxImportSource": "astro",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "es2020",
+    "types": ["astro/client"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", ".astro/types.d.ts"],
+  "exclude": ["dist"]
+}
