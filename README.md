@@ -22,7 +22,7 @@ npm run preview
 
 ### ESLint
 
-Linting de código JavaScript/TypeScript y Astro.
+Linting de código JavaScript/TypeScript con configuración moderna (ESLint v9).
 
 ```bash
 # Verificar problemas de linting
@@ -31,6 +31,8 @@ npm run lint
 # Corregir problemas automáticamente
 npm run lint:fix
 ```
+
+**Nota**: Los archivos `.astro` se ignoran temporalmente debido a incompatibilidades con ESLint v9.
 
 ### Prettier
 
@@ -124,9 +126,10 @@ Para obtener la mejor experiencia de desarrollo, abre el archivo `lkmx-website.c
 - **Astro** - Framework de sitios web estáticos
 - **Tailwind CSS** - Framework de CSS utilitario
 - **TypeScript** - Tipado estático para JavaScript
-- **ESLint** - Linting de código
+- **ESLint v9** - Linting de código JavaScript/TypeScript (configuración moderna)
 - **Prettier** - Formateo de código
-- **Husky** - Hooks de Git
+- **Husky** - Hooks de Git (compatible con versiones futuras)
 - **lint-staged** - Linting de archivos staged
 - **Commitlint** - Validación de formato de commits
 - **Commitizen** - Creación interactiva de commits
+- **TypeScript** - Tipado estático para JavaScript
