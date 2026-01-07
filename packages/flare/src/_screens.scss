@@ -1,0 +1,14 @@
+// Breakpoints used by the responsive functions
+// simplified screen categories inspired from the 
+// Foundation CSS framework
+
+// CSS variables can't be used within media queries 
+// 
+$breakpoint-xxs:   300px !default;  // xxs    300px - 399px
+$breakpoint-xs:    400px !default;  // xs     400px - 575px
+$breakpoint-s:     576px !default;  // s      576px - 767px
+$breakpoint-m:     768px !default;  // m      768px - 991px
+$breakpoint-l:     992px !default;  // l      992px - 1199px
+$breakpoint-xl:   1200px !default;  // xl     1200px - 1599px
+$breakpoint-xxl:  1600px !default;  // xxl    1600px - 2559px
+$breakpoint-xxxl: 2560px !default;  // xxxl   2560px - infinito

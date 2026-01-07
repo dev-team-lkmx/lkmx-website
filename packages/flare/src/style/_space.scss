@@ -1,0 +1,25 @@
+:root {
+    --f-golden-ratio: 1.61803398875;
+    
+    --f-gutter: 16px;
+    --f-gutter-l:    calc(var(--f-gutter) * var(--f-golden-ratio));
+    --f-gutter-xl:   calc(var(--f-gutter-l) * var(--f-golden-ratio));
+    --f-gutter-xxl:  calc(var(--f-gutter-xl) * var(--f-golden-ratio));
+    --f-gutter-xxxl: calc(var(--f-gutter-xxl) * var(--f-golden-ratio));
+
+    --f-gutter-s:   calc(var(--f-gutter) / var(--f-golden-ratio));
+    --f-gutter-xs:  calc(var(--f-gutter-s) / var(--f-golden-ratio));
+    --f-gutter-xxs: calc(var(--f-gutter-xs) / var(--f-golden-ratio));
+
+
+    --f-radius:      var(--f-gutter);
+    --f-radius-l:    calc(var(--f-radius) * var(--f-golden-ratio));
+    --f-radius-xl:   calc(var(--f-radius-l) * var(--f-golden-ratio));
+    --f-radius-xxl:  calc(var(--f-radius-xl) * var(--f-golden-ratio));
+    --f-radius-xxxl: calc(var(--f-radius-xxl) * var(--f-golden-ratio));
+
+    --f-radius-s:   calc(var(--f-radius) / var(--f-golden-ratio));
+    --f-radius-xs:  calc(var(--f-radius-s) / var(--f-golden-ratio));
+    --f-radius-xxs: calc(var(--f-radius-xs) / var(--f-golden-ratio));
+
+}

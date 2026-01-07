@@ -1,0 +1,18 @@
+.--flare-cell {
+    height: 100%;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+
+    $breakpoints: "xxs", "xs", "s", "m", "l", "xl", "xxl", "xxxl";
+
+    @each $breakpoint in $breakpoints {
+        .--flare-block {
+            --f-block-width-#{$breakpoint}: 100%;
+
+            &>.content>.box {
+                height: 100%
+            }
+        }
+    }
+}

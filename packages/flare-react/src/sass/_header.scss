@@ -1,0 +1,32 @@
+.--flare-header {
+  --f-header-height: auto;
+  --f-header-text-color: black;
+  --f-header-background-color: white;
+
+  min-height: var(--f-gutter-xl);
+  height: var(--f-header-height);
+
+  color: var(--f-header-text-color);
+  background-color: var(--f-header-background-color);
+
+  a {
+    color: var(--f-header-text-color);
+  }
+
+  nav:not(.actions) {
+    a {
+      padding: 0 var(--f-gutter);
+    }
+  }
+
+  .--flare-column {
+      height: 100%;
+  }
+
+  .--flare-block {
+      height: 100%;
+      .box {
+          height: 100%;
+      }
+  }
+}

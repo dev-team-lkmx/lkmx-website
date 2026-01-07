@@ -1,0 +1,116 @@
+
+:root {
+    --f-error-color: red;
+
+    --f-primary-action-color: black;
+    --f-primary-action-color--hover: #222222;
+
+    --f-primary-action-anticolor: white;
+    --f-primary-action-anticolor--hover: #eeeeee;
+
+
+    --f-forms-text-font: var(--f-paragraph-text-font);
+
+    --f-forms-input-text-size: var(--f-default-text-size);
+    --f-forms-button-text-size: var(--f-default-text-size);
+    
+    --f-forms-radius: 0;
+    --f-forms-input-radius: var(--f-forms-radius);
+    --f-forms-button-radius: var(--f-forms-radius);
+
+    --f-forms-input-padding: var(--f-gutter-xs);
+    --f-forms-button-padding: var(--f-gutter-s);
+    
+    --f-forms-input-border-color:#999;
+    --f-forms-input-border-width: 1px;
+}
+
+label,
+input {
+  font-size: 1rem;
+  display: block;
+}
+
+label {
+  color: var(--f-paragraph-text-color);
+  margin-bottom: var(--f-gutter-s);
+  font-size: 1rem;
+}
+
+input, textarea {
+  font-family: var(--f-forms-text-font);
+  font-size: var(--f-forms-input-text-size);
+  border-color: var(--f-forms-input-border-color);
+  border-width: var(--f-forms-input-border-width);
+  border-style: solid;
+  
+  width: 100%;
+  outline: none;
+  padding: var(--f-forms-input-padding);
+  border-radius: var(--f-forms-input-radius);
+  margin-bottom: var(--f-gutter);
+
+  &[type="text"],
+  &[type="email"],
+  &[type="password"] {
+    appearance: none;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.error {
+  font-size: rem(14px);
+  color: var(--f-error-color);
+  display: block;
+  margin-bottom: var(--f-gutter-xs);
+}
+
+select {
+  font-size: var(--f-forms-input-text-size);
+  padding: var(--f-forms-input-padding);
+  margin-bottom: var(--f-gutter);
+  height: min-content;
+  border-radius: var(--f-forms-input-radius);
+  width: 100%;
+}
+
+button, .button, a.button {
+  display: inline-block;
+  border: none;
+  line-height: normal;
+  color: var(--f-primary-action-anticolor);
+  background-color: var(--f-primary-action-color);
+  padding: var(--f-forms-button-padding);
+  border-radius: var(--f-forms-button-radius);
+  outline: none;
+  margin-bottom: var(--f-gutter);
+  text-decoration: none;
+  text-align: center;
+  font-size: var(--f-forms-button-text-size);
+  height: min-content;
+
+  transition: background-color 0.4s, color 0.4s;
+
+  cursor: default;
+
+  &:hover {
+    color: var(--f-primary-action-anticolor--hover, var(--f-primary-action-anticolor));
+    background-color: var(--f-primary-action-color--hover, var(--f-primary-action-color));
+  }
+
+  &:disabled {
+      opacity: 0.5;
+  }
+}
+
+.no-button, button.no-button {
+  background-color: transparent;
+  color: var(--f-default-text-color);
+  font-family: var(--f-default-text-font);
+  font-weight: normal;
+
+  cursor: pointer;
+}

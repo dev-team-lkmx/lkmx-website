@@ -1,0 +1,23 @@
+{
+  "name": "@lkmx/flare-react",
+  "version": "0.1.7",
+  "private": false,
+  "main": "main.js",
+  "style": "src/sass/main.scss",
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "scripts": {},
+  "devServer": {
+    "historyApiFallback": true
+  },
+  "dependencies": {
+    "@lkmx/flare": "file:../flare",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0"
+  }
+}

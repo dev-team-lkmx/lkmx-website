@@ -1,0 +1,17 @@
+{
+  "name": "@lkmx/flare",
+  "version": "0.5.20",
+  "description": "Flare Design System",
+  "main": "src/flare.scss",
+  "style": "src/flare.scss",
+  "dependencies": {
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0"
+  },
+  "keywords": [
+    "flare",
+    "design",
+    "system"
+  ],
+  "license": "MIT"
+}

@@ -1107,19 +1107,17 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@lkmx/flare-react@^0.1.7":
+"@lkmx/flare-react@file:packages/flare-react":
   version "0.1.7"
-  resolved "https://registry.npmjs.org/@lkmx/flare-react/-/flare-react-0.1.7.tgz"
-  integrity sha512-+3rLF2UrGuFu9//7fCYVagT7mh8V0fdDry14oUUGrJsGZP86FRYAFwZGeRvFiVuAHDXubUSW1WG4LxGxlrnLjw==
+  resolved "file:packages/flare-react"
   dependencies:
-    "@lkmx/flare" "^0.5.20"
+    "@lkmx/flare" "file:../flare"
     react "^18.2.0"
     react-dom "^18.2.0"
 
-"@lkmx/flare@^0.5.20":
+"@lkmx/flare@file:../flare":
   version "0.5.20"
-  resolved "https://registry.npmjs.org/@lkmx/flare/-/flare-0.5.20.tgz"
-  integrity sha512-RV8Vpq56ecix0Q19Oy7fEDIWszqfkSNim7OOtTOuEYgy2nmo0j+/Cq5M2ufnx4Dp5K/sWbuJl+KzkpH64wxnLg==
+  resolved "file:packages/flare"
   dependencies:
     sass "^1.50.0"
     sass-loader "^12.6.0"

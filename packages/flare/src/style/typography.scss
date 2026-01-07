@@ -1,0 +1,256 @@
+@import "../rem";
+
+// Text tokens used mostly in the <main> section
+// Some components may want to use these variables though
+:root {
+    --f-default-text-color: black;
+    --f-default-text-font: "SF Pro Text", "Helvetica Neue", -apple-system, system-ui, Helvetica, Arial, sans-serif;
+    --f-default-text-size: 16px;
+
+    --f-text-selection-color: yellow;
+
+    --f-text-strong-weight: bold;
+        
+    // Paragraphs
+    --f-paragraph-text-size: var(--f-default-text-size);
+    --f-paragraph-text-font: var(--f-default-text-font);
+    --f-paragraph-text-weight: normal;
+    --f-paragraph-text-color: var(--f-default-text-color);
+    --f-paragraph-line-height: 1.3em;
+    --f-paragraph-margin: 0 0 var(--f-gutter) 0;
+    
+    // Links
+    --f-links-text-color: black;
+    --f-links-text-hover-color: blue;
+    --f-links-text-visited-color: purple;
+    --f-links-text-active-color: red;
+    
+    // List items
+    --f-list-item-text-size: var(--f-paragraph-text-size);
+    --f-list-item-text-font: var(--f-paragraph-text-font);
+    --f-list-item-text-weight: var(--f-paragraph-text-weight);
+    --f-list-item-text-color: var(--f-paragraph-text-color);
+    --f-list-item-line-height: 1.5em;
+    --f-list-item-margin: 0 0 var(--f-gutter) 0;
+    
+    // Header default values
+    --f-default-headers-font: var(--f-default-text-font);
+    --f-default-headers-weight: 800;
+    --f-default-headers-color: var(--f-default-text-color);
+    --f-default-headers-line: 1em;
+    --f-default-headers-margin: 0 0 var(--f-gutter) 0;
+    
+    // H1
+    --f-h1-text-size: 60px;
+    --f-h1-text-font: var(--f-default-headers-font);
+    --f-h1-text-weight: var(--f-default-headers-weight);
+    --f-h1-text-color: var(--f-default-headers-color);
+    --f-h1-text-line-height: var(--f-default-headers-line);
+    --f-h1-text-margin: var(--f-default-headers-margin);
+    --f-h1-text-letter-spacing: normal;
+    
+    // H2
+    --f-h2-text-size: 40px;
+    --f-h2-text-font: var(--f-default-headers-font);
+    --f-h2-text-weight: var(--f-default-headers-weight);
+    --f-h2-text-color: var(--f-default-headers-color);
+    --f-h2-text-line-height: var(--f-default-headers-line);
+    --f-h2-text-margin: var(--f-default-headers-margin);
+    --f-h2-text-letter-spacing: normal;
+    
+    // H3
+    --f-h3-text-size: 28px;
+    --f-h3-text-font: var(--f-default-headers-font);
+    --f-h3-text-weight: var(--f-default-headers-weight);
+    --f-h3-text-color: var(--f-default-headers-color);
+    --f-h3-text-line-height: var(--f-default-headers-line);
+    --f-h3-text-margin: var(--f-default-headers-margin);
+    --f-h3-text-letter-spacing: normal;
+    
+    // H4
+    --f-h4-text-size: 24px;
+    --f-h4-text-font: var(--f-default-headers-font);
+    --f-h4-text-weight: var(--f-default-headers-weight);
+    --f-h4-text-color: var(--f-default-headers-color);
+    --f-h4-text-line-height: var(--f-default-headers-line);
+    --f-h4-text-margin: var(--f-default-headers-margin);
+    --f-h4-text-letter-spacing: normal;
+    
+    // H5
+    --f-h5-text-size: 20px;
+    --f-h5-text-font: var(--f-default-headers-font);
+    --f-h5-text-weight: var(--f-default-headers-weight);
+    --f-h5-text-color: var(--f-default-headers-color);
+    --f-h5-text-line-height: var(--f-default-headers-line);
+    --f-h5-text-margin: var(--f-default-headers-margin);
+    --f-h5-text-letter-spacing: 0.01em;
+    
+    // H6
+    --f-h6-text-size: 16px;
+    --f-h6-text-font: var(--f-default-headers-font);
+    --f-h6-text-weight: var(--f-default-headers-weight);
+    --f-h6-text-color: var(--f-default-headers-color);
+    --f-h6-text-line-height: var(--f-default-headers-line);
+    --f-h6-text-margin: var(--f-default-headers-margin);
+    --f-h6-text-letter-spacing: 0.01em;
+}    
+
+
+
+
+html {
+    font-size: $rem-base-size;
+}
+
+body {
+    font-family: var(--f-text-font);
+}
+
+
+::selection {
+    background: var(--f-text-selection-color);
+}
+::-moz-selection {
+    background: var(--f-text-selection-color); /* Gecko Browsers */
+}
+
+strong {
+    font-weight: var(--f-text-strong);
+}
+
+em {
+    font-style: italic;
+}
+
+p {
+    font-size: var(--f-paragraph-text-size);
+    font-family: var(--f-paragraph-text-font);
+    font-weight: var(--f-paragraph-text-weight);
+    color: var(--f-paragraph-text-color);
+    line-height: var(--f-paragraph-line-height);
+    margin: var(--f-paragraph-margin);
+}
+
+dl {
+    font-size: var(--f-paragraph-text-size);
+    font-family: var(--f-paragraph-text-font);
+    font-weight: var(--f-paragraph-text-weight);
+    color: var(--f-paragraph-text-color);
+}
+
+dd {
+    margin-bottom: var(--f-gutter);
+}
+
+table {
+    font-family: var(--f-table-text-font);
+    font-size: var(--f-table-text-size);
+    line-height: var(--f-table-line-height);
+
+    min-width: calc(100% / var(--f-golden-ratio));
+    margin: 0 auto;
+}
+
+th {
+    font-weight: var(--f-table-text-weight);
+}
+
+li {
+    font-size: var(--f-list-item-text-size);
+    font-family: var(--f-list-item-text-font);
+    font-weight: var(--f-list-item-text-weight);
+    color: var(--f-list-item-text-color);
+    line-height: var(--f-list-item-line-height);
+    margin: var(--f-list-item-margin);
+}
+
+ul, ol {
+    margin: var(--f-paragraph-margin);
+}
+
+img {
+    display: block;
+}
+
+a {
+    color: var(--f-links-text-color);
+    
+    &:visited {
+        color: var(--f-links-text-visited-color);
+    }
+    &:hover {
+        color: var(--f-links-text-hover-color);
+    }
+    &:active {
+        color: var(--f-links-text-active-color);
+    }
+}
+
+h1 {
+    font-size: var(--f-h1-text-size);
+    font-family: var(--f-h1-text-font);
+    font-weight: var(--f-h1-text-weight);
+    color: var(--f-h1-text-color);
+    line-height: var(--f-h1-text-line-height);
+    margin: var(--f-h1-text-margin);
+    letter-spacing: var(--f-h1-text-letter-spacing);
+}
+
+h2 {
+    font-size: var(--f-h2-text-size);
+    font-family: var(--f-h2-text-font);
+    font-weight: var(--f-h2-text-weight);
+    color: var(--f-h2-text-color);
+    line-height: var(--f-h2-text-line-height);
+    margin: var(--f-h2-text-margin);
+    letter-spacing: var(--f-h2-text-letter-spacing);
+}
+
+h3 {
+    font-size: var(--f-h3-text-size);
+    font-family: var(--f-h3-text-font);
+    font-weight: var(--f-h3-text-weight);
+    color: var(--f-h3-text-color);
+    line-height: var(--f-h3-text-line-height);
+    margin: var(--f-h3-text-margin);
+    letter-spacing: var(--f-h3-text-letter-spacing);
+}
+
+h4 {
+    font-size: var(--f-h4-text-size);
+    font-family: var(--f-h4-text-font);
+    font-weight: var(--f-h4-text-weight);
+    color: var(--f-h4-text-color);
+    line-height: var(--f-h4-text-line-height);
+    margin: var(--f-h4-text-margin);
+    letter-spacing: var(--f-h4-text-letter-spacing);
+}
+
+h5 {
+    font-size: var(--f-h5-text-size);
+    font-family: var(--f-h5-text-font);
+    font-weight: var(--f-h5-text-weight);
+    color: var(--f-h5-text-color);
+    line-height: var(--f-h5-text-line-height);
+    margin: var(--f-h5-text-margin);
+    letter-spacing: var(--f-h5-text-letter-spacing);
+}
+
+h6 {
+    font-size: var(--f-h6-text-size);
+    font-family: var(--f-h6-text-font);
+    font-weight: var(--f-h6-text-weight);
+    color: var(--f-h6-text-color);
+    line-height: var(--f-h6-text-line-height);
+    margin: var(--f-h6-text-margin);
+    letter-spacing: var(--f-h6-text-letter-spacing);
+}
+
+
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--f-default-text-color);
+    margin-bottom: var(--f-gutter);
+}

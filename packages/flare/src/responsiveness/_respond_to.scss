@@ -1,0 +1,127 @@
+@import '../screens';
+
+// Breakpoints used by the responsive functions
+// simplified screen categories inspired from the 
+// Foundation CSS framework
+
+// CSS variables can't be used in media queries 
+
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == 'xxs' or $breakpoint == 'xxs' {
+      @media screen and (max-width: (#{$breakpoint-xs - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xs' or $breakpoint == 'xs' or $breakpoint == 'xs' {
+      @media screen and (min-width: #{$breakpoint-xs}) and (max-width: (#{$breakpoint-s - 1px})) {
+        @content;
+      }
+    }
+  
+  
+    @if $breakpoint == 'xs and down' or $breakpoint == '<=xs' {
+      @media screen and (max-width: (#{$breakpoint-s - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 's' or $breakpoint == 's' {
+      @media screen and (min-width: #{$breakpoint-s}) and (max-width: (#{$breakpoint-m - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 's and up' or $breakpoint == '>=s' or $breakpoint == '>xs' {
+      @media screen and (min-width: #{$breakpoint-s}) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 's and down' or $breakpoint == '<=s' or $breakpoint == '<m' {
+      @media screen and (max-width: (#{$breakpoint-m - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'm' or $breakpoint == 'm' {
+      @media screen and (min-width: #{$breakpoint-m}) and (max-width: (#{$breakpoint-l - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'm and up' or $breakpoint == '>=m' or $breakpoint == '>s' {
+      @media screen and (min-width: $breakpoint-m) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'm and down' or $breakpoint == '<=m' {
+      @media screen and (max-width: (#{$breakpoint-l - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'l' or $breakpoint == 'l' {
+      @media screen and (min-width: #{$breakpoint-l}) and (max-width: (#{$breakpoint-xl - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'l and up' or $breakpoint == '>=l' or $breakpoint == '>m' {
+      @media screen and (min-width: #{$breakpoint-l}) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'l and down' or $breakpoint == '<=l' {
+      @media screen and (max-width: (#{$breakpoint-xl - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xl' or $breakpoint == 'xl' {
+      @media screen and (min-width: #{$breakpoint-xl}) and (max-width: (#{$breakpoint-xxl - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xl and down' or $breakpoint == '<=xl' {
+      @media screen and (max-width: (#{$breakpoint-xxl - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xl and up' or $breakpoint == '>=xl' or $breakpoint == '>l' {
+      @media screen and (min-width: #{$breakpoint-xl}) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xxl' or $breakpoint == 'xxl' {
+      @media screen and (min-width: #{$breakpoint-xxl}) and (max-width: (#{$breakpoint-xxxl - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xxl and down' or $breakpoint == '<=xxl' {
+      @media screen and (max-width: (#{$breakpoint-xxxl - 1px})) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xxl and up' or $breakpoint == '>=xxl' or $breakpoint == '>xl' {
+      @media screen and (min-width: #{$breakpoint-xxl}) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == 'xxxl' or $breakpoint == 'xxxl' {
+      @media screen and (min-width: #{$breakpoint-xxxl}) {
+        @content;
+      }
+    }
+  
+  }
+  

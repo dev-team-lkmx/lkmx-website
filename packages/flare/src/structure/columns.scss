@@ -1,0 +1,254 @@
+@import '../responsiveness/respond_to.scss';
+
+
+// Component SCSS
+.--flare-columns {
+  // Column default widths
+  // When columns aren't defined 100% is used
+  --f-columns-normal-width-xxs: 100%;
+  --f-columns-normal-width-xs:  100%;
+  --f-columns-normal-width-s:   100%;
+
+  --f-columns-normal-width-m:    var(--f-breakpoint-m);
+
+  --f-columns-normal-width-l:    var(--f-breakpoint-l);
+  --f-columns-normal-width-xl:   var(--f-breakpoint-xl);
+  --f-columns-normal-width-xxl:  var(--f-breakpoint-xl);
+  --f-columns-normal-width-xxxl: var(--f-breakpoint-xxl);
+  
+  --f-columns-weight-ratio: var(--f-golden-ratio);
+
+  --f-columns-slim-ratio: var(--f-golden-ratio);
+}
+
+.--flare-columns {
+  position: relative;
+  display: grid;
+  grid-auto-flow: row;
+
+  $breakpoints: "xxs", "xs", "s", "m", "l", "xl", "xxl", "xxxl";
+
+  @each $breakpoint in $breakpoints {
+    @include respond-to($breakpoint) {
+
+      &.--flare-columns--#{$breakpoint}-mode-normal {
+        --f-columns-width-#{$breakpoint}:  var(--f-columns-normal-width-#{$breakpoint}); 
+      }
+
+      &.--flare-columns--#{$breakpoint}-mode-slim {
+        --f-columns-width-#{$breakpoint}: calc(var(--f-columns-normal-width-#{$breakpoint}) / var(--f-columns-slim-ratio));
+      }
+
+      // Column margins are calculated first
+      --f-columns-margins: calc(calc(100% - var(--f-columns-width-#{$breakpoint})) / 2);
+      
+      // Tries to calculate the value using pixels
+      // which happens only if the --f-columns-with-X variable is set
+      // otherwise the block must take 100% because the width
+      // will be given by the parent grid-template-columns property
+      --f-block-width-#{$breakpoint}--px: calc(var(--f-columns-width-#{$breakpoint}) / var(--f-columns-number-#{$breakpoint}));
+      --f-block-width-#{$breakpoint}: var(--f-block-width-#{$breakpoint}--px, 100%);
+
+
+      // For 1 columns the distribution is simple
+      &.--flare-columns--#{$breakpoint}-1 {
+        grid-template-columns: 1fr;
+      }
+
+      // Having 2 columns is special because the weight affects them
+      &.--flare-columns--#{$breakpoint}-2 {
+        --f-columns-ratio-small: calc(1 / calc(var(--f-columns-weight-ratio) + 1));
+        --f-columns-ratio-big: calc(var(--f-columns-weight-ratio) / calc(var(--f-columns-weight-ratio) + 1));
+
+        --f-columns-content-light--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-small));
+        --f-columns-content-heavy--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-big));
+
+        --f-columns-width-light--px: calc(var(--f-columns-content-light--px) + var(--f-columns-margins));
+        --f-columns-width-heavy--px: calc(var(--f-columns-content-heavy--px) + var(--f-columns-margins));
+
+        --f-columns-width-light--pct: calc(100% * var(--f-columns-ratio-small));
+        --f-columns-width-heavy--pct: calc(100% * var(--f-columns-ratio-big));
+
+        // When the weights is normal 
+        &.--flare-weight--#{$breakpoint}-normal {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        &.--flare-weight--#{$breakpoint}-left {
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          grid-template-columns: var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct)) var(--f-columns-width-light--px, var(--f-columns-width-light--pct));
+        }
+
+        &.--flare-weight--#{$breakpoint}-right {
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          grid-template-columns: var(--f-columns-width-light--px, var(--f-columns-width-light--pct)) var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct));
+        }
+      }
+
+      // Three columns has even more scenarios due to the combinations between left, right and middle
+      // left-right combination is skipped because it just looks so ugly
+      &.--flare-columns--#{$breakpoint}-3 {
+        &.--flare-weight--#{$breakpoint}-normal {
+          grid-template-columns: 1fr var(--f-block-width-#{$breakpoint}--px, calc(100% / var(--f-columns-number-#{$breakpoint}))) 1fr;
+        }
+
+        &.--flare-weight--#{$breakpoint}-middle {
+          --f-columns-ratio-small: calc(1 / calc(var(--f-columns-weight-ratio) + 2));
+          --f-columns-ratio-big: calc(var(--f-columns-weight-ratio) / calc(var(--f-columns-weight-ratio) + 2));
+
+          --f-columns-width-light--pct: calc(100% * var(--f-columns-ratio-small));
+          --f-columns-width-heavy--pct: calc(100% * var(--f-columns-ratio-big));
+          
+          --f-columns-content-light--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-small));
+          --f-columns-content-heavy--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-big));
+
+          --f-columns-width-light--px: calc(var(--f-columns-content-light--px) + var(--f-columns-margins));
+          --f-columns-width-heavy--px: var(--f-columns-content-heavy--px);
+
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-middle {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+
+          grid-template-columns:
+            var(--f-columns-width-light--px, var(--f-columns-width-light--pct))
+            var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct))
+            var(--f-columns-width-light--px, var(--f-columns-width-light--pct));
+        }
+
+        &.--flare-weight--#{$breakpoint}-left-middle, &.--flare-weight--#{$breakpoint}-middle-left, 
+        &.--flare-weight--#{$breakpoint}-middle-right, &.--flare-weight--#{$breakpoint}-right-middle {
+          --f-columns-ratio-small: calc(1 / calc(var(--f-columns-weight-ratio) * 2 + 1));
+          --f-columns-ratio-big: calc(var(--f-columns-weight-ratio) / calc(var(--f-columns-weight-ratio) * 2 + 1));
+
+          --f-columns-width-light--pct: calc(100% * var(--f-columns-ratio-small));
+          --f-columns-width-heavy--pct: calc(100% * var(--f-columns-ratio-big));
+
+          --f-columns-content-light--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-small));
+          --f-columns-content-heavy--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-big));
+
+          --f-columns-width-light--px: calc(var(--f-columns-content-light--px) + var(--f-columns-margins));
+          --f-columns-width-heavy--px: var(--f-columns-content-heavy--px);
+          --f-columns-width-heavy-edge--px: calc(var(--f-columns-content-heavy--px) + var(--f-columns-margins));
+        }
+
+        &.--flare-weight--#{$breakpoint}-left-middle, &.--flare-weight--#{$breakpoint}-middle-left {
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-middle {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+
+          grid-template-columns:
+            var(--f-columns-width-heavy-edge--px, var(--f-columns-width-heavy--pct))
+            var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct))
+            var(--f-columns-width-light--px, var(--f-columns-width-light--pct));
+        }
+
+
+        &.--flare-weight--#{$breakpoint}-right-middle, &.--flare-weight--#{$breakpoint}-middle-right {
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-middle {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+
+          grid-template-columns:
+            var(--f-columns-width-light--px, var(--f-columns-width-light--pct))
+            var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct))
+            var(--f-columns-width-heavy-edge--px, var(--f-columns-width-heavy--pct));
+        }
+
+        // Single column left or right weight uses one heavy y two light ratios
+        &.--flare-weight--#{$breakpoint}-left, &.--flare-weight--#{$breakpoint}-right {
+          --f-columns-ratio-small: calc(1 / calc(var(--f-columns-weight-ratio) + 2));
+          --f-columns-ratio-big: calc(var(--f-columns-weight-ratio) / calc(var(--f-columns-weight-ratio) + 2));
+
+          --f-columns-width-light--pct: calc(100% * var(--f-columns-ratio-small));
+          --f-columns-width-heavy--pct: calc(100% * var(--f-columns-ratio-big));
+
+          --f-columns-content-light--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-small));
+          --f-columns-content-heavy--px: calc(var(--f-columns-width-#{$breakpoint}) * var(--f-columns-ratio-big));
+
+          --f-columns-width-light-edge--px: calc(var(--f-columns-content-light--px) + var(--f-columns-margins));
+          --f-columns-width-light--px: var(--f-columns-content-light--px);
+          --f-columns-width-heavy--px: calc(var(--f-columns-content-heavy--px) + var(--f-columns-margins));
+        }
+
+
+        &.--flare-weight--#{$breakpoint}-left {
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-middle {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+
+          grid-template-columns:
+            var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct))
+            var(--f-columns-width-light--px, var(--f-columns-width-light--pct))
+            var(--f-columns-width-light-edge--px, var(--f-columns-width-light--pct));
+        }
+        
+        &.--flare-weight--#{$breakpoint}-right {
+          .--flare-block--#{$breakpoint}-left {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-middle {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-light--px, 100%);
+          }
+          .--flare-block--#{$breakpoint}-right {
+            --f-block-width-#{$breakpoint}: var(--f-columns-content-heavy--px, 100%);
+          }
+
+          grid-template-columns:
+            var(--f-columns-width-light-edge--px, var(--f-columns-width-light--pct))
+            var(--f-columns-width-light--px, var(--f-columns-width-light--pct))
+            var(--f-columns-width-heavy--px, var(--f-columns-width-heavy--pct));
+        }
+
+      }
+
+      &:not(.--flare-columns--#{$breakpoint}-1):not(.--flare-columns--#{$breakpoint}-2):not(.--flare-columns--#{$breakpoint}-3) {
+        &.--flare-columns--#{$breakpoint}-mode-normal, &.--flare-columns--#{$breakpoint}-mode-slim {
+          --f-block-template-columns--px: repeat(calc(var(--f-columns-number-#{$breakpoint}) - 2), var(--f-block-width-#{$breakpoint}--px));
+          grid-template-columns: 1fr var(--f-block-template-columns--px, calc(100% / var(--f-columns-number-#{$breakpoint}))) 1fr;
+        }
+
+        &.--flare-columns--#{$breakpoint}-mode-full {
+          .--flare-block {
+            --f-block-width-#{$breakpoint}: 100%;
+          }
+          grid-template-columns: repeat(var(--f-columns-number-#{$breakpoint}), 1fr);
+        }
+
+      }
+    }
+  }
+}

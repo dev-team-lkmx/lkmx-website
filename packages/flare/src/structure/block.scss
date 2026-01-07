@@ -1,0 +1,41 @@
+@import '../responsiveness/respond_to.scss';
+
+.--flare-block {
+    --f-block-default-padding: var(--f-gutter);
+}
+
+// Component SCSS
+.--flare-block {
+    width: 100%;
+    display: grid;
+  
+    .box {
+      padding: var(--f-block-default-padding);
+      max-width: 100%;
+      img {
+        max-width: 100%;
+      }
+      &>:last-child {
+        margin-bottom: 0;
+      }
+    }
+  
+    justify-items: center;
+  
+  
+    $breakpoints: "xxs", "xs", "s", "m", "l", "xl", "xxl", "xxxl";
+    @each $breakpoint in $breakpoints {
+      @include respond-to($breakpoint) {
+        .content {
+          width: var(--f-block-width-#{$breakpoint});
+          max-width: 100%;
+        }
+        &--#{$breakpoint}-left {
+          justify-items: end;
+        }
+        &--#{$breakpoint}-right {
+          justify-items: start;
+        }
+      }
+    }
+  }

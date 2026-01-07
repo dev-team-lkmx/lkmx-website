@@ -1,0 +1,6 @@
+$rem-base-size: 16px;
+
+@function rem($size) {
+    $remSize: calc($size / $rem-base-size);
+    @return #{$remSize}rem;
+}

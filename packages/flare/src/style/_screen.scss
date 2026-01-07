@@ -1,0 +1,12 @@
+@import "../screens";
+
+:root {
+    --f-breakpoint-xxs:   #{$breakpoint-xxs};
+    --f-breakpoint-xs:    #{$breakpoint-xs};
+    --f-breakpoint-s:     #{$breakpoint-s};
+    --f-breakpoint-m:     #{$breakpoint-m};
+    --f-breakpoint-l:     #{$breakpoint-l};
+    --f-breakpoint-xl:    #{$breakpoint-xl};
+    --f-breakpoint-xxl:   #{$breakpoint-xxl};
+    --f-breakpoint-xxxl:  #{$breakpoint-xxxl};
+}

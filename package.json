@@ -13,7 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@lkmx/flare-react": "^0.1.7",
+    "@lkmx/flare-react": "file:packages/flare-react",
     "@next/font": "^13.0.7",
     "@svgr/webpack": "^6.4.0",
     "cobe": "^0.6.3",

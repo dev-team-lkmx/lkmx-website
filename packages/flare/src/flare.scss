@@ -1,0 +1,24 @@
+@import 'reset';
+
+@import 'structure/page';
+@import 'structure/columns';
+@import 'structure/cell';
+@import 'structure/block';
+
+@import "style/space";
+@import "style/screen";
+@import "style/typography";
+@import "style/tables";
+@import "style/forms";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--f-default-text-font);
+    color: var(--f-default-text-color);
+    &.--flare-hidden {
+        opacity: 0;
+    }
+}
