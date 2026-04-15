@@ -10,13 +10,29 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 function getTeamList() {
-  let r = require.context('/public/images', false, /\.(png|jpe?g|svg)$/);
-  return r.keys().map(n => {
-    return {
-      fileName: n.replace(/\.\//, ''),
-      name: n.replace(/\.\/_\d*_/, '').replace(/\.jpg/, '')
-    };
-  }).sort((a, b) => a.name.localeCompare(b.name));
+  let r = require.context("/public/images", false, /\.(png|jpe?g|svg)$/);
+  return r
+    .keys()
+    .map((n) => {
+      const normalizedName = n
+        .replace(/\.\//, "")
+        .replace(/_\d*_/, "")
+        .replace(/\.(png|jpe?g|svg)$/i, "");
+      return {
+        fileName: n.replace(/\.\//, ""),
+        name: normalizedName,
+      };
+    })
+    .sort((a, b) => {
+      const aNumber = Number.parseInt(a.name.replace(/^i/, ""), 10);
+      const bNumber = Number.parseInt(b.name.replace(/^i/, ""), 10);
+
+      if (!Number.isNaN(aNumber) && !Number.isNaN(bNumber)) {
+        return aNumber - bNumber;
+      }
+
+      return a.name.localeCompare(b.name);
+    });
 }
 
 export default function ContactPage() {
