@@ -1,9 +1,6 @@
 import '@lkmx/flare';
 import '@/styles/globals.scss';
-import { Roboto_Condensed } from '@next/font/google'
-import { IBM_Plex_Sans } from '@next/font/google'
-import { Inter } from '@next/font/google'
-import { Syne } from '@next/font/google';
+import { Roboto_Condensed, IBM_Plex_Sans, Inter, Syne } from 'next/font/google';
 import Head from 'next/head';
 import { useEffect } from 'react';
 

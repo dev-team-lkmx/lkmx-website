@@ -1,0 +1,10 @@
+packages:
+  - "packages/*"
+allowBuilds:
+  '@parcel/watcher': true
+  sharp: true
+  unrs-resolver: true
+peerDependencyRules:
+  allowedVersions:
+    react-onclickoutside>react: "19"
+    react-onclickoutside>react-dom: "19"
